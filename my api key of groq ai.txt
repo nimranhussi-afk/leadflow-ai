@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Birthday Surprise ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% 20%, #321447 0%, #160d24 45%, #080510 100%);
+    color: white;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+#stars,
+#hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.15;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: scale(1.3);
+    }
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 20px;
+    animation: floatHeart linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- SCREENS ---------- */
+
+.screen {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.96);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.content {
+    width: min(850px, 95vw);
+    text-align: center;
+}
+
+/* ---------- TEXT ---------- */
+
+.small-text {
+    color: #e8c7ff;
+    font-size: clamp(16px, 2vw, 22px);
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: clamp(38px, 8vw, 80px);
+    line-height: 1.05;
+    background: linear-gradient(90deg, #ffb7e8, #ffffff, #ff9edb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #e9d8ee;
+    font-size: clamp(17px, 2.5vw, 24px);
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto 30px;
+}
+
+/* ---------- BUTTON ---------- */
+
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    padding: 15px 30px;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #ff4fa3, #a94dff);
+
+    box-shadow:
+        0 10px 30px rgba(255, 79, 163, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(255, 79, 163, 0.4);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* ---------- GIFT BOX ---------- */
+
+.gift-area {
+    margin: 35px auto;
+    width: 220px;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.gift {
+    position: relative;
+    width: 145px;
+    height: 125px;
+
+    background: linear-gradient(135deg, #ff4f9a, #d32c72);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 20px 50px rgba(255, 45, 135, 0.35);
+
+    animation: giftFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes giftFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+.gift::before {
+    content: "";
+    position: absolute;
+
+    width: 28px;
+    height: 100%;
+
+    background: #ffd45c;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.gift::after {
+    content: "";
+
+    position: absolute;
+
+    width: 165px;
+    height: 25px;
+
+    left: -10px;
+    top: -18px;
+
+    background: #ffdf70;
+
+    border-radius: 7px;
+}
+
+.gift-lid {
+    position: absolute;
+
+    width: 155px;
+    height: 25px;
+
+    left: -5px;
+    top: -17px;
+
+    z-index: 3;
+
+    background: #ffcf45;
+    border-radius: 7px;
+
+    transition: 1s ease;
+}
+
+.gift-bow-left,
+.gift-bow-right {
+    position: absolute;
+
+    width: 48px;
+    height: 35px;
+
+    top: -42px;
+
+    background: #ffdf70;
+
+    border-radius: 50%;
+}
+
+.gift-bow-left {
+    left: 28px;
+    transform: rotate(-25deg);
+}
+
+.gift-bow-right {
+    right: 28px;
+    transform: rotate(25deg);
+}
+
+.gift.open .gift-lid {
+    transform:
+        translateY(-75px)
+        rotate(-12deg);
+}
+
+/* ---------- BIRTHDAY ---------- */
+
+.cake {
+    font-size: 100px;
+    animation: cakeBounce 1.2s ease infinite alternate;
+    margin-bottom: 15px;
+}
+
+@keyframes cakeBounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-12px);
+    }
+}
+
+/* ---------- LETTER ---------- */
+
+.letter {
+    width: min(680px, 95vw);
+    min-height: 330px;
+
+    margin: 20px auto;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.05)
+        );
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,0.3);
+
+    text-align: left;
+}
+
+.letter p {
+    color: #f4e9f5;
+
+    font-size: clamp(16px, 2vw, 20px);
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+}
+
+/* ---------- PHOTOS ---------- */
+
+.photo-container {
+    width: min(480px, 90vw);
+    height: min(480px, 60vh);
+
+    margin: 20px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-container img {
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    border: 3px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5);
+
+    animation: photoIn 0.8s ease;
+}
+
+@keyframes photoIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85) rotate(-3deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.memory-text {
+    color: #ead9ee;
+    font-size: 18px;
+    margin: 15px auto 25px;
+}
+
+/* ---------- FINAL ---------- */
+
+.final-heart {
+    font-size: 120px;
+
+    animation:
+        heartbeat 1.2s ease-in-out infinite;
+
+    margin-bottom: 20px;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.firework {
+    position: fixed;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    pointer-events: none;
+
+    animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+    from {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0.2);
+
+        opacity: 0;
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+
+    .letter {
+        padding: 25px;
+    }
+
+    .gift-area {
+        transform: scale(0.9);
+    }
+
+    .cake {
+        font-size: 80px;
+    }
+
+    .final-heart {
+        font-size: 90px;
+    }
+
+    button {
+        padding: 13px 24px;
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div id="stars"></div>
+<div id="hearts"></div>
+
+<!-- SCREEN 1 -->
+<section id="screen1" class="screen active">
+
+    <div class="content">
+
+        <div class="small-text">
+            Hey, <span class="herName"></span>...
+        </div>
+
+        <h1 class="title">
+            I made something for you ❤️
+        </h1>
+
+        <p class="subtitle">
+            But there's only one way to find out what's inside...
+        </p>
+
+        <div class="gift-area" id="giftArea">
+
+            <div class="gift" id="gift">
+
+                <div class="gift-lid"></div>
+
+                <div class="gift-bow-left"></div>
+                <div class="gift-bow-right"></div>
+
+            </div>
+
+        </div>
+
+        <button id="openButton">
+            🎁 Open Your Gift
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+<section id="screen2" class="screen">
+
+    <div class="content">
+
+        <div class="cake">
+            🎂
+        </div>
+
+        <h1 class="title">
+            HAPPY BIRTHDAY
+        </h1>
+
+        <h2 class="title">
+            ❤️ <span class="herName"></span> ❤️
+        </h2>
+
+        <p class="subtitle">
+            Okay... this is only the beginning. 👀
+        </p>
+
+        <button id="continue1">
+            There's More ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+<section id="screen3" class="screen">
+
+    <div class="content">
+
+        <h1 class="title">
+            💌 A Little Letter
+        </h1>
+
+        <div class="letter">
+
+            <p id="letterText"></p>
+
+        </div>
+
+        <button id="continue2">
+            Keep Going ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+<section id="screen4" class="screen">
+
+    <div class="content">
+
+        <div class="small-text">
+            Some memories...
+        </div>
+
+        <h1 class="title">
+            📸 Just For You
+        </h1>
+
+        <div class="photo-container">
+            <img id="memoryImage" src="" alt="A special memory">
+        </div>
+
+        <div class="memory-text" id="memoryText"></div>
+
+        <button id="nextPhoto">
+            Next Memory → ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 5 -->
+<section id="screen5" class="screen">
+
+    <div class="content">
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+        <h1 class="title">
+            Happy Birthday
+        </h1>
+
+        <h2 class="title">
+            <span class="herName"></span>
+        </h2>
+
+        <p class="subtitle">
+            I hope today makes you smile
+            as much as you make me smile.
+            <br><br>
+            I'm really glad you're in my life. ❤️
+        </p>
+
+        <button id="finalButton">
+            ✨ One Last Surprise
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 6 -->
+<section id="screen6" class="screen">
+
+    <div class="content">
+
+        <div class="cake">
+            🎂✨
+        </div>
+
+        <h1 class="title">
+            You deserve the happiest birthday.
+        </h1>
+
+        <p class="subtitle">
+            And I hope this tiny little surprise
+            becomes one of the things that makes
+            you smile today. ❤️
+            <br><br>
+            Happy Birthday, <span class="herName"></span>. 🥹❤️
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   CHANGE THESE THINGS
+   ========================================================= */
+
+
+/* HER NAME */
+
+const HER_NAME = "HER NAME";
+
+
+/* YOUR LETTER */
+
+const LETTER = `Happy Birthday, my favorite person. ❤️
+
+I wanted to give you something a little different this year.
+
+It's obviously not a huge present...
+it's just a tiny thing I made myself,
+but I wanted you to have something that
+was made specifically for you.
+
+I hope you have an absolutely beautiful day.
+
+Keep smiling, keep being yourself,
+and never forget that you are incredibly special to me.
+
+Happy Birthday. ❤️`;
+
+
+/* YOUR PHOTOS
+
+   Put your images in the SAME folder as this HTML file.
+
+   Example:
+
+   birthday.html
+   photo1.jpg
+   photo2.jpg
+   photo3.jpg
+
+*/
+
+const MEMORIES = [
+
+    {
+        image: "photo1.jpg",
+        text: "One of my favorite pictures of you. ❤️"
+    },
+
+    {
+        image: "photo2.jpg",
+        text: "A little memory that always makes me smile. 🥹"
+    },
+
+    {
+        image: "photo3.jpg",
+        text: "And another one I couldn't leave out. ❤️"
+    }
+
+];
+
+
+/* =========================================================
+   DON'T CHANGE BELOW THIS LINE
+   ========================================================= */
+
+
+/* HER NAME */
+
+document.querySelectorAll(".herName").forEach(element => {
+    element.textContent = HER_NAME;
+});
+
+
+/* BACKGROUND STARS */
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* FLOATING HEARTS */
+
+const hearts = document.getElementById("hearts");
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const symbols = ["❤️", "💕", "💗", "💖", "✨"];
+
+    heart.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        (14 + Math.random() * 18) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 6) + "s";
+
+    hearts.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 12000);
+}
+
+setInterval(createHeart, 700);
+
+
+/* SCREEN SWITCHER */
+
+function showScreen(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const next =
+        document.getElementById("screen" + number);
+
+    if (next) {
+        next.classList.add("active");
+    }
+}
+
+
+/* GIFT */
+
+const gift =
+    document.getElementById("gift");
+
+const openButton =
+    document.getElementById("openButton");
+
+function openGift() {
+
+    gift.classList.add("open");
+
+    createBurst();
+
+    setTimeout(() => {
+        showScreen(2);
+    }, 1000);
+}
+
+openButton.addEventListener("click", openGift);
+
+gift.addEventListener("click", openGift);
+
+
+/* BIRTHDAY */
+
+document
+    .getElementById("continue1")
+    .addEventListener("click", () => {
+
+        showScreen(3);
+
+        startTyping();
+
+    });
+
+
+/* LETTER TYPEWRITER */
+
+let typingStarted = false;
+
+function startTyping() {
+
+    if (typingStarted) return;
+
+    typingStarted = true;
+
+    const element =
+        document.getElementById("letterText");
+
+    let index = 0;
+
+    function type() {
+
+        if (index < LETTER.length) {
+
+            element.textContent +=
+                LETTER[index];
+
+            index++;
+
+            setTimeout(type, 25);
+
+        }
+
+    }
+
+    type();
+}
+
+
+/* LETTER -> PHOTOS */
+
+document
+    .getElementById("continue2")
+    .addEventListener("click", () => {
+
+        if (!MEMORIES.length) {
+            showScreen(5);
+            return;
+        }
+
+        currentMemory = 0;
+
+        showMemory();
+
+        showScreen(4);
+
+    });
+
+
+/* PHOTOS */
+
+let currentMemory = 0;
+
+function showMemory() {
+
+    if (!MEMORIES.length) return;
+
+    const memory =
+        MEMORIES[currentMemory];
+
+    const image =
+        document.getElementById("memoryImage");
+
+    const text =
+        document.getElementById("memoryText");
+
+    image.style.animation = "none";
+
+    /*
+       Force browser to restart animation.
+    */
+
+    void image.offsetWidth;
+
+    image.style.animation =
+        "photoIn 0.8s ease";
+
+    image.src = memory.image;
+
+    image.alt =
+        "Birthday memory " +
+        (currentMemory + 1);
+
+    text.textContent =
+        memory.text;
+
+    /*
+       If an image doesn't exist,
+       show a friendly fallback.
+    */
+
+    image.onerror = function() {
+
+        image.style.display = "none";
+
+        text.textContent =
+            "Add " +
+            memory.image +
+            " to the same folder as birthday.html ❤️";
+
+    };
+
+    image.onload = function() {
+        image.style.display = "block";
+    };
+
+}
+
+
+/* NEXT PHOTO */
+
+document
+    .getElementById("nextPhoto")
+    .addEventListener("click", () => {
+
+        currentMemory++;
+
+        if (currentMemory >= MEMORIES.length) {
+
+            showScreen(5);
+
+            setTimeout(() => {
+                createFireworks();
+            }, 500);
+
+            return;
+        }
+
+        showMemory();
+
+    });
+
+
+/* FINAL BUTTON */
+
+document
+    .getElementById("finalButton")
+    .addEventListener("click", () => {
+
+        createFireworks();
+
+        showScreen(6);
+
+    });
+
+
+/* SPARKLE BURST */
+
+function createBurst() {
+
+    for (let i = 0; i < 35; i++) {
+
+        const particle =
+            document.createElement("div");
+
+        particle.className = "firework";
+
+        particle.style.left = "50%";
+        particle.style.top = "50%";
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            80 + Math.random() * 250;
+
+        particle.style.setProperty(
+            "--x",
+            Math.cos(angle) * distance + "px"
+        );
+
+        particle.style.setProperty(
+            "--y",
+            Math.sin(angle) * distance + "px"
+        );
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 1300);
+    }
+
+}
+
+
+/* FIREWORKS */
+
+function createFireworks() {
+
+    const positions = [
+        [25, 30],
+        [75, 25],
+        [50, 20],
+        [20, 65],
+        [80, 65]
+    ];
+
+    positions.forEach(position => {
+
+        for (let i = 0; i < 30; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "firework";
+
+            particle.style.left =
+                position[0] + "%";
+
+            particle.style.top =
+                position[1] + "%";
+
+            const angle =
+                Math.random() * Math.PI * 2;
+
+            const distance =
+                50 + Math.random() * 180;
+
+            particle.style.setProperty(
+                "--x",
+                Math.cos(angle) * distance + "px"
+            );
+
+            particle.style.setProperty(
+                "--y",
+                Math.sin(angle) * distance + "px"
+            );
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1300);
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   KEYBOARD SUPPORT
+   ========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Enter") {
+
+        const active =
+            document.querySelector(".screen.active");
+
+        const button =
+            active?.querySelector("button");
+
+        if (button) {
+            button.click();
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

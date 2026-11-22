@@ -1,0 +1,15 @@
+2026/09/07-03:33:57.845 950 Reusing MANIFEST C:\Users\Syed Family\AppData\Roaming\xyz.chatboxapp.app\IndexedDB\file__0.indexeddb.leveldb/MANIFEST-000001
+2026/09/07-03:33:57.845 950 Recovering log #39
+2026/09/07-03:33:57.857 950 Reusing old log C:\Users\Syed Family\AppData\Roaming\xyz.chatboxapp.app\IndexedDB\file__0.indexeddb.leveldb/000039.log 
+2026/09/07-13:17:36.749 950 Level-0 table #44: started
+2026/09/07-13:17:36.768 950 Level-0 table #44: 245811 bytes OK
+2026/09/07-13:17:36.772 950 Delete type=0 #39
+2026/09/07-13:17:36.773 950 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/09/07-13:17:36.775 950 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x02\x01\x03\x01,\x00s\x00e\x00s\x00s\x00i\x00o\x00n\x00:\x006\x00d\x008\x00a\x005\x00b\x00a\x00b\x00-\x001\x005\x008\x00c\x00-\x004\x00b\x002\x009\x00-\x008\x00f\x00b\x008\x00-\x003\x000\x009\x00d\x007\x00e\x00f\x00c\x005\x004\x000\x007' @ 125440 : 0
+2026/09/07-13:17:36.775 950 Compacting 1@1 + 1@2 files
+2026/09/07-13:17:36.784 950 Generated table #45@1: 161 keys, 42533 bytes
+2026/09/07-13:17:36.784 950 Compacted 1@1 + 1@2 files => 42533 bytes
+2026/09/07-13:17:36.785 950 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/09/07-13:17:36.787 950 Delete type=2 #41
+2026/09/07-13:17:36.787 950 Delete type=2 #44
+2026/09/07-13:17:36.789 950 Manual compaction at level-1 from '\x00\x02\x01\x03\x01,\x00s\x00e\x00s\x00s\x00i\x00o\x00n\x00:\x006\x00d\x008\x00a\x005\x00b\x00a\x00b\x00-\x001\x005\x008\x00c\x00-\x004\x00b\x002\x009\x00-\x008\x00f\x00b\x008\x00-\x003\x000\x009\x00d\x007\x00e\x00f\x00c\x005\x004\x000\x007' @ 125440 : 0 .. (end); will stop at (end)
